@@ -6,7 +6,7 @@ License:	GPLv2+
 Url:		http://mscore.sourceforge.net/
 Group:		Publishing
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/mscore/%{name}-%{version}.tar.bz2
-BuildRequires:	cmake libalsa-devel jackit-devel tetex
+BuildRequires:	cmake libalsa-devel jackit-devel texlive-texmf
 BuildRequires:	qt4-devel > 4.3
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
