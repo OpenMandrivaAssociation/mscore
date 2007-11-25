@@ -3,9 +3,9 @@ Name:		mscore
 Version: 	0.7.0.1
 Release:	%mkrel 1
 License:	GPLv2+
-Url:		http://www.gnokii.org/
+Url:		http://mscore.sourceforge.net/
 Group:		Publishing
-Source0:	http://www.gnokii.org/download/gnokii/%{name}-%{version}.tar.bz2
+Source0:	http://ovh.dl.sourceforge.net/sourceforge/mscore/%{name}-%{version}.tar.bz2
 BuildRequires:	cmake libalsa-devel jackit-devel tetex
 BuildRequires:	qt4-devel > 4.3
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
