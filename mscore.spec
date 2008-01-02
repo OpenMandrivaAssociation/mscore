@@ -9,6 +9,7 @@ Source0:	http://ovh.dl.sourceforge.net/sourceforge/mscore/%{name}-%{version}.tar
 Patch0:		mscore-0.8.0-fix-desktop-file.patch
 BuildRequires:	cmake libalsa-devel jackit-devel texlive-texmf-context
 BuildRequires:	qt4-devel > 4.3
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 MuseScore stands for Linux MusE Score Typesetter.
