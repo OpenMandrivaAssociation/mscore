@@ -1,6 +1,6 @@
 Summary:	Linux MusE Score Typesetter
 Name:		mscore
-Version: 	0.9.0
+Version: 	0.9.1
 Release:	%mkrel 1
 License:	GPLv2+
 Url:		http://mscore.sourceforge.net/
