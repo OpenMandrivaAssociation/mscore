@@ -1,6 +1,6 @@
 Summary:	Linux MusE Score Typesetter
 Name:		mscore
-Version: 	0.9.1
+Version: 	0.9.1d
 Release:	%mkrel 1
 License:	GPLv2+
 Url:		http://mscore.sourceforge.net/
@@ -28,7 +28,7 @@ Features:
       - print or create pdf files
 
 %prep
-%setup -q -n %{name}-%{version}/mscore
+%setup -q -n %{name}-0.9.1/mscore
 
 %build
 %cmake_qt4
