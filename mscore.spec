@@ -6,6 +6,7 @@ License:	GPLv2+
 Url:		http://mscore.sourceforge.net/
 Group:		Publishing
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/mscore/%{name}-%{version}.tar.bz2
+Patch0:		mscore-0.9.1d-fix-desktop-install.patch
 BuildRequires:	cmake libalsa-devel jackit-devel texlive-texmf-context
 BuildRequires:	portaudio-devel
 BuildRequires:	qt4-devel > 4.3
@@ -30,6 +31,7 @@ Features:
 
 %prep
 %setup -q -n %{name}-0.9.1/mscore
+%patch0 -p0
 
 %build
 %cmake_qt4
@@ -55,4 +57,4 @@ cd build
 %_bindir/*
 %_datadir/mscore*
 %_datadir/applications/*.desktop
-%_datadir/pixmaps/*.png
+%_datadir/pixmaps/*
