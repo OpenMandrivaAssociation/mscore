@@ -9,6 +9,7 @@ Source0:	http://ovh.dl.sourceforge.net/sourceforge/mscore/%{name}-%{version}.tar
 BuildRequires:	cmake libalsa-devel jackit-devel texlive-texmf-context
 BuildRequires:	portaudio-devel
 BuildRequires:	qt4-devel > 4.3
+BuildRequires:	qt4-linguist
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
