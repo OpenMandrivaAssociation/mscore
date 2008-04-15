@@ -1,12 +1,11 @@
 Summary:	Linux MusE Score Typesetter
 Name:		mscore
-Version: 	0.9.1d
+Version: 	0.9.2
 Release:	%mkrel 1
 License:	GPLv2+
 Url:		http://mscore.sourceforge.net/
 Group:		Publishing
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/mscore/%{name}-%{version}.tar.bz2
-Patch0:		mscore-0.9.1d-fix-desktop-install.patch
 BuildRequires:	cmake libalsa-devel jackit-devel texlive-texmf-context
 BuildRequires:	portaudio-devel
 BuildRequires:	qt4-devel > 4.3
@@ -30,8 +29,7 @@ Features:
       - print or create pdf files
 
 %prep
-%setup -q -n %{name}-0.9.1/mscore
-%patch0 -p0
+%setup -q -n %{name}-%{version}/mscore
 
 %build
 %cmake_qt4
