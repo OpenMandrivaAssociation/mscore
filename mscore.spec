@@ -34,7 +34,9 @@ Features:
 
 %build
 %cmake_qt4
-make
+%make
+make lupdate
+make lrelease
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -57,3 +59,4 @@ cd build
 %_datadir/mscore*
 %_datadir/applications/*.desktop
 %_datadir/pixmaps/*
+%qt4plugins/designer/libawlplugin.so
