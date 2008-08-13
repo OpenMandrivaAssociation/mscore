@@ -6,6 +6,7 @@ License:	GPLv2+
 Url:		http://mscore.sourceforge.net/
 Group:		Publishing
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/mscore/%{name}-%{version}.tar.bz2
+Patch0:		mscore-0.9.2-fix-underlink.patch
 BuildRequires:	cmake libalsa-devel jackit-devel texlive-texmf-context
 BuildRequires:	portaudio-devel
 BuildRequires:	qt4-devel > 4.3
@@ -31,6 +32,7 @@ Features:
 
 %prep
 %setup -q -n %{name}-%{version}/mscore
+%patch0 -p0
 
 %build
 %cmake_qt4
