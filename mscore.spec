@@ -1,15 +1,21 @@
 Summary:	Linux MusE Score Typesetter
 Name:		mscore
-Version: 	0.9.2
-Release:	%mkrel 2
-License:	GPLv2+
+Version: 	0.9.3
+Release:	%mkrel 1
+License:	GPLv2
 Url:		http://mscore.sourceforge.net/
 Group:		Publishing
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/mscore/%{name}-%{version}.tar.bz2
-Patch0:		mscore-0.9.2-fix-underlink.patch
-BuildRequires:	cmake libalsa-devel jackit-devel texlive-texmf-context
+Patch0:		mscore-0.9.3-fix-underlink.patch
+Patch1:		mscore-0.9.3-disable-uitools.patch
+Patch2:		mscore-0.9.3-only-install-qm.patch
+BuildRequires:	cmake
+BuildRequires:	libalsa-devel
+BuildRequires:	jackit-devel
+Buildrequires:	fluidsynth-devel
 BuildRequires:	portaudio-devel
-BuildRequires:	qt4-devel > 4.3
+BuildRequires:	tetex-latex
+BuildRequires:	qt4-devel > 4.4
 BuildRequires:	qt4-linguist
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -33,27 +39,18 @@ Features:
 %prep
 %setup -q -n %{name}-%{version}/mscore
 %patch0 -p0
+%patch1 -p0
+%patch2 -p0 -b .locale
 
 %build
-%cmake_qt4
+%cmake_qt4 -DUSE_GLOBAL_FLUID=ON
 %make
 make lupdate
 make lrelease
 
 %install
 rm -rf $RPM_BUILD_ROOT
-cd build
-%{makeinstall_std}
-
-%if %mdkversion < 200900
-%post
-%update_menus
-%endif
-
-%if %mdkversion < 200900
-%postun
-%clean_menus
-%endif
+%{makeinstall_std} -C build
 
 %clean
 %{__rm} -rf $RPM_BUILD_ROOT
@@ -65,4 +62,4 @@ cd build
 %_datadir/mscore*
 %_datadir/applications/*.desktop
 %_datadir/pixmaps/*
-%qt4plugins/designer/libawlplugin.so
+%qt4plugins/*/*.so
