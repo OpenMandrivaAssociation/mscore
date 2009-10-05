@@ -1,7 +1,7 @@
 Summary:	Linux MusE Score Typesetter
 Name:		mscore
 Version: 	0.9.3
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv2
 Url:		http://mscore.sourceforge.net/
 Group:		Publishing
@@ -43,7 +43,7 @@ Features:
 %patch2 -p0 -b .locale
 
 %build
-%cmake_qt4 -DUSE_GLOBAL_FLUID=ON
+%cmake_qt4 -DUSE_GLOBAL_FLUID=ON -DBUILD_SCRIPT_INTERFACE=OFF
 %make
 make lupdate
 make lrelease
@@ -62,4 +62,3 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/mscore*
 %_datadir/applications/*.desktop
 %_datadir/pixmaps/*
-%qt4plugins/*/*.so
