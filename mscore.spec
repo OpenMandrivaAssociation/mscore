@@ -17,6 +17,7 @@ BuildRequires:	portaudio-devel
 BuildRequires:	tetex-latex
 BuildRequires:	qt4-devel > 4.4
 BuildRequires:	qt4-linguist
+Requires:	qtscriptbindings
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -52,6 +53,9 @@ make lrelease
 rm -rf $RPM_BUILD_ROOT
 %{makeinstall_std} -C build
 
+# conflicts with qtscriptbindings
+rm -f %buildroot%qt4plugins/script/*
+
 %clean
 %{__rm} -rf $RPM_BUILD_ROOT
 
@@ -62,3 +66,4 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/mscore*
 %_datadir/applications/*.desktop
 %_datadir/pixmaps/*
+%qt4plugins/designer/libawlplugin.so
