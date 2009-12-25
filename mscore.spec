@@ -1,14 +1,16 @@
+%define srcname MuseScore
+
 Summary:	Linux MusE Score Typesetter
 Name:		mscore
-Version: 	0.9.3
-Release:	%mkrel 3
+Version:	0.9.5
+Release:	%mkrel 1
 License:	GPLv2
 Url:		http://mscore.sourceforge.net/
 Group:		Publishing
-Source0:	http://ovh.dl.sourceforge.net/sourceforge/mscore/%{name}-%{version}.tar.bz2
-Patch0:		mscore-0.9.3-fix-underlink.patch
-Patch1:		mscore-0.9.3-disable-uitools.patch
-Patch2:		mscore-0.9.3-only-install-qm.patch
+Source0:	http://downloads.sourceforge.net/project/mscore/mscore/%{name}-%{version}/%{srcname}-%{version}.tar.bz2
+Patch0:		mscore-0.9.5-fix-underlink.patch
+Patch1:		mscore-0.9.5-disable-uitools.patch
+Patch2:		mscore-0.9.5-only-install-qm.patch
 BuildRequires:	cmake
 BuildRequires:	libalsa-devel
 BuildRequires:	jackit-devel
@@ -41,7 +43,7 @@ Features:
 %setup -q -n %{name}-%{version}/mscore
 %patch0 -p0
 %patch1 -p0
-%patch2 -p0 -b .locale
+%patch2 -p0
 
 %build
 %cmake_qt4 -DUSE_GLOBAL_FLUID=ON -DBUILD_SCRIPT_INTERFACE=OFF
