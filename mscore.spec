@@ -13,7 +13,7 @@ Patch1:		mscore-0.9.5-disable-uitools.patch
 BuildRequires:	cmake
 BuildRequires:	libalsa-devel
 BuildRequires:	jackit-devel
-Buildrequires:	fluidsynth-devel
+BuildRequires:	fluidsynth-devel
 BuildRequires:	portaudio-devel
 BuildRequires:	tetex-latex
 BuildRequires:	qt4-devel > 4.4
@@ -52,20 +52,20 @@ make lupdate
 make lrelease
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %{makeinstall_std} -C build
 
 # conflicts with qtscriptbindings
-rm -f %buildroot%qt4plugins/script/*
+rm -f %{buildroot}%{qt4plugins}/script/*
 
 %clean
-%{__rm} -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
 %doc ChangeLog NEWS README
-%_bindir/*
-%_datadir/mscore*
-%_datadir/applications/*.desktop
-%_datadir/pixmaps/*
-%qt4plugins/designer/libawlplugin.so
+%{_bindir}/%{name}
+%{_datadir}/%{name}*
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.*
+%{qt4plugins}/designer/libawlplugin.so
