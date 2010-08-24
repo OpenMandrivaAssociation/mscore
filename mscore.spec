@@ -3,7 +3,7 @@
 Summary:    Linux MusE Score Typesetter
 Name:       mscore
 Version:    0.9.6.2
-Release:    %mkrel 3
+Release:    %mkrel 4
 # (Fedora) rtf2html is LGPLv2+
 # paper4.png paper5.png are LGPLv3
 # the rest is GPLv2
@@ -77,7 +77,6 @@ This package contains the user manual of MuseScore in different languages.
 Summary:       MuseScore fonts
 Group:         Publishing
 License:       GPL+ with exceptions and OFL
-Requires:      fontpackages-filesystem
 BuildArch:     noarch
 BuildRequires: fontforge
 BuildRequires: t1utils
