@@ -3,7 +3,7 @@
 Summary:    Linux MusE Score Typesetter
 Name:       mscore
 Version:    0.9.6.2
-Release:    %mkrel 4
+Release:    %mkrel 5
 # (Fedora) rtf2html is LGPLv2+
 # paper4.png paper5.png are LGPLv3
 # the rest is GPLv2
