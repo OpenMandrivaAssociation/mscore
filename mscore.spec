@@ -3,7 +3,7 @@
 Summary:    Linux MusE Score Typesetter
 Name:       mscore
 Version:    0.9.6.2
-Release:    %mkrel 8
+Release:    %mkrel 9
 # (Fedora) rtf2html is LGPLv2+
 # paper4.png paper5.png are LGPLv3
 # the rest is GPLv2
@@ -144,7 +144,7 @@ rm -rf %{buildroot}
 
 # Install fonts
 mkdir -p %{buildroot}/%{_datadir}/fonts/%{name}
-install -pm 644 %{name}/fonts/%{name}-*.ttf %{buildroot}/%{_datadir}/fonts/%{name}
+install -pm 644 %{name}/fonts/%{name}*.ttf %{buildroot}/%{_datadir}/fonts/%{name}
 
 # Install Manpage
 install -D -pm 644 packaging/%{name}.1 %{buildroot}/%{_mandir}/man1/%{name}.1
