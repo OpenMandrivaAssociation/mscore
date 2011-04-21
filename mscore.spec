@@ -1,8 +1,9 @@
 %define srcname MuseScore
+%define shortname mscore
 
 Summary:    Linux MusE Score Typesetter
 Name:       mscore
-Version:    0.9.6.3
+Version:    1.0
 Release:    %mkrel 1
 # (Fedora) rtf2html is LGPLv2+
 # paper4.png paper5.png are LGPLv3
@@ -10,14 +11,14 @@ Release:    %mkrel 1
 License:    GPLv2 and LGPLv2+ and LGPLv3
 Url:        http://musescore.org
 Group:      Publishing
-Source0:    http://downloads.sourceforge.net/project/mscore/mscore/%{name}-%{version}/%{name}-%{version}.tar.bz2
+Source0:    http://downloads.sourceforge.net/project/mscore/mscore/%{srcname}-%{version}/%{srcname}-%{version}.tar.bz2
 # (Fedora) For building the jazz font
 Source1:    mscore-ConvertFont.ff
 # (Fedora) For mime types
 Source2:    mscore.xml
-Patch0:     mscore-0.9.6.1-awl-fix-underlink.patch
-Patch1:     mscore-0.9.5-disable-uitools.patch
-# (Fedora) use the system default soundfont instead of the deleted, non-free, one 
+Patch0:     mscore-1.0-awl-fix-underlink.patch
+Patch1:     mscore-1.0-disable-uitools.patch
+# (Fedora) use the system default soundfont instead of the deleted, non-free, one
 Patch2:     mscore-use-default-soundfont.patch
 # (Fedora) don't build the common files (font files, wallpapers, demo song,
 # instrument list) into the binary executable to reduce its size. This is also
@@ -30,19 +31,19 @@ Patch4:     mscore-split-doc.patch
 Patch5:     mscore-dso-linking.patch
 # (Fedora) Fix some gcc warnings
 Patch6:     mscore-fix-gcc-warnings.patch
+# (Mandriva) Fix constant cast (gcc-4.6)
+Patch7:     mscore-1.0-fix_const_cast.patch
 BuildRequires:  cmake
 BuildRequires:  libalsa-devel
 BuildRequires:  jackit-devel
 BuildRequires:  fluidsynth-devel
 BuildRequires:  portaudio-devel
-#BuildRequires:  tetex-latex
-BuildRequires:  qt4-devel > 4.4
+BuildRequires:  qt4-devel > 4:4.4
 BuildRequires:  qt4-linguist
 Requires:   qtscriptbindings
 Requires:   %{name}-fonts = %{version}-%{release}
 Requires:   soundfont2-default
-Provides:   musescore-%{version}
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Provides:   musescore
 
 %description
 MuseScore stands for Linux MusE Score Typesetter.
@@ -67,6 +68,7 @@ Group:         Development/Other
 License:       CC-BY
 Requires:      %{name} = %{version}-%{release}
 BuildArch:     noarch
+Obsoletes:     mscore-doc
 
 %description doc
 MuseScore is a free cross platform WYSIWYG music notation program.
@@ -79,8 +81,9 @@ Group:         Publishing
 License:       GPL+ with exceptions and OFL
 BuildArch:     noarch
 BuildRequires: fontforge
+BuildRequires: tetex
 BuildRequires: t1utils
-BuildRequires: texlive
+Obsoletes:     mscore-fonts
 
 %description fonts
 MuseScore is a free cross platform WYSIWYG music notation program.
@@ -88,8 +91,8 @@ MuseScore is a free cross platform WYSIWYG music notation program.
 This package contains the musical notation fonts for use of MuseScore.
 
 %prep
-%setup -q -n %{name}-%{version}/mscore
-%patch0 -p0 -b .underlink
+%setup -q -n %{shortname}-%{version}/%{name}
+%patch0 -p2 -b .underlink
 %patch1 -p0 -b .disable-uitools
 
 %patch2 -p2 -b .default-soundfont
@@ -97,6 +100,7 @@ This package contains the musical notation fonts for use of MuseScore.
 %patch4 -p2 -b .split-doc
 %patch5 -p2 -b .dso-linking
 %patch6 -p2 -b .gcc-warnings
+%patch7 -p1 -b .const-cast
 
 # only install .qm files
 perl -pi -e 's,.*.ts\n,,g' share/locale/CMakeLists.txt
@@ -113,10 +117,10 @@ touch -r rtf2html/README tmpfile
 mv -f tmpfile rtf2html/README
 
 # (Fedora) Remove preshipped fonts. We will build them from source
-rm -f %{name}/%{name}/fonts/*.ttf
+rm -f %{shortname}/%{shortname}/fonts/*.ttf
 
 # (Fedora) Disable rpath
-sed -i '/rpath/d' %{name}/CMakeLists.txt
+sed -i '/rpath/d' %{shortname}/CMakeLists.txt
 
 # (Fedora) this is non-free soundfont "Gort's Minipiano"
 rm -f mscore/data/piano1.sf2
@@ -131,7 +135,7 @@ make lupdate
 make lrelease
 
 # (Fedora) Build fonts from source:
-pushd ../%{name}/fonts
+pushd ../%{shortname}/fonts
    # adapt genFont script to mandriva's cmake build dir
    sed -i 's,../../../build/mscore/genft,../../build/mscore/genft,' genFont
    ./genFont
@@ -143,14 +147,14 @@ rm -rf %{buildroot}
 %{makeinstall_std} -C build
 
 # Install fonts
-mkdir -p %{buildroot}/%{_datadir}/fonts/%{name}
-install -pm 644 %{name}/fonts/%{name}*.ttf %{buildroot}/%{_datadir}/fonts/%{name}
+mkdir -p %{buildroot}/%{_datadir}/fonts/%{shortname}
+install -pm 644 %{shortname}/fonts/%{shortname}*.ttf %{buildroot}/%{_datadir}/fonts/%{shortname}
 
 # Install Manpage
-install -D -pm 644 packaging/%{name}.1 %{buildroot}/%{_mandir}/man1/%{name}.1
+install -D -pm 644 packaging/%{shortname}.1 %{buildroot}/%{_mandir}/man1/%{shortname}.1
 
 # Install mimetype file
-install -D -pm 644 %{SOURCE2} %{buildroot}/%{_datadir}/mime/packages/%{name}.xml
+install -D -pm 644 %{SOURCE2} %{buildroot}/%{_datadir}/mime/packages/%{shortname}.xml
 
 # (Fedora) gather the doc files in one location
    cp -p rtf2html/ChangeLog        ChangeLog.rtf2html
@@ -169,19 +173,19 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %doc ChangeLog* NEWS README* COPYING*
-%{_bindir}/%{name}
-%{_datadir}/%{name}*
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.*
-%{_datadir}/mime/packages/%{name}.xml
+%{_bindir}/%{shortname}
+%{_datadir}/%{shortname}*
+%{_datadir}/applications/%{shortname}.desktop
+%{_datadir}/pixmaps/%{shortname}.*
+%{_datadir}/mime/packages/%{shortname}.xml
 %{_datadir}/soundfonts/TimGM6mb.sf2
 %{_mandir}/man1/*
 %{qt4plugins}/designer/libawlplugin.so
-%exclude %{_datadir}/%{name}-0.9/man/
+%exclude %{_datadir}/%{shortname}-1.0/man/
 
 %files doc
 %defattr(-,root,root,-)
-%doc %{_datadir}/%{name}-0.9/man/
+%doc %{_datadir}/%{shortname}-1.0/man/
 
 %files fonts
-%{_datadir}/fonts/%{name}
+%{_datadir}/fonts/%{shortname}
