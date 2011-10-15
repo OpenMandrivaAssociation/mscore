@@ -4,7 +4,7 @@
 Summary:    Linux MusE Score Typesetter
 Name:       mscore
 Version:    1.0
-Release:    %mkrel 1
+Release:    %mkrel 2
 # (Fedora) rtf2html is LGPLv2+
 # paper4.png paper5.png are LGPLv3
 # the rest is GPLv2
@@ -40,6 +40,7 @@ BuildRequires:  fluidsynth-devel
 BuildRequires:  portaudio-devel
 BuildRequires:  qt4-devel > 4:4.4
 BuildRequires:  qt4-linguist
+BuildRequires:  doxygen
 Requires:   qtscriptbindings
 Requires:   %{name}-fonts = %{version}-%{release}
 Requires:   soundfont2-default
