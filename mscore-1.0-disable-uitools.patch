@@ -1,0 +1,9 @@
+--- scriptgen/qtbindings/CMakeLists.txt  2009-08-12 15:28:31.000000000 +0200
++++ scriptgen/qtbindings/CMakeLists.txt.orig 2009-12-25 11:15:56.000000000 +0100
+@@ -18,5 +18,5 @@
+ #  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ #=============================================================================
+
+-subdirs (core gui network uitools xml)
++subdirs (core gui network xml)
+

@@ -1,0 +1,11 @@
+--- mscore-1.0/mscore/awl/CMakeLists.txt  2010-07-12 22:55:30.000000000 +0300
++++ mscore-1.0/mscore/awl/CMakeLists.txt.new  2010-08-08 02:35:55.576220050 +0300
+@@ -125,7 +125,7 @@
+       )
+
+ ##  "-D_GNU_SOURCE -D_REENTRANT -DHAVE_CONFIG_H -DQT_PLUGIN -DQT_SHARED -DQT_NO_DEBUG -include ${PROJECT_SOURCE_DIR}/all.h"
+-
++TARGET_LINK_LIBRARIES( awlplugin ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} )
+ set_target_properties( awlplugin
+       PROPERTIES
+          COMPILE_FLAGS

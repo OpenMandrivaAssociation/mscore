@@ -1,0 +1,11 @@
+--- mscore/mscore/exportxml.cpp.orig	2011-04-21 16:45:50.495194997 +0200
++++ mscore/mscore/exportxml.cpp	2011-04-21 16:46:31.202267333 +0200
+@@ -2340,7 +2340,7 @@
+                    el->userOff().y());
+ */
+             if (el->type() == HAIRPIN || el->type() == OTTAVA || el->type() == TEXTLINE) {
+-                  SLine* sl = static_cast<const SLine*>(el);
++                  SLine* sl = static_cast<SLine*>(el);
+ //                  printf("slin segsz=%d", sl->lineSegments().size());
+                   if (sl->lineSegments().size() > 0) {
+                         LineSegment* seg = sl->lineSegments().at(0);
