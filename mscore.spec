@@ -4,7 +4,7 @@
 Summary:    Linux MusE Score Typesetter
 Name:       mscore
 Version:    1.0
-Release:    %mkrel 2
+Release:    %mkrel 1
 # (Fedora) rtf2html is LGPLv2+
 # paper4.png paper5.png are LGPLv3
 # the rest is GPLv2
@@ -40,7 +40,6 @@ BuildRequires:  fluidsynth-devel
 BuildRequires:  portaudio-devel
 BuildRequires:  qt4-devel > 4:4.4
 BuildRequires:  qt4-linguist
-BuildRequires:  doxygen
 Requires:   qtscriptbindings
 Requires:   %{name}-fonts = %{version}-%{release}
 Requires:   soundfont2-default
@@ -190,3 +189,138 @@ rm -rf %{buildroot}
 
 %files fonts
 %{_datadir}/fonts/%{shortname}
+
+
+%changelog
+* Thu Apr 21 2011 Frank Kober <emuse@mandriva.org> 1.0-1mdv2011.0
++ Revision: 656537
+- new version 1.0
+  o made patch to fix gcc 4.6 compile error (upstream is informed)
+
+* Sat Oct 02 2010 Thomas Spuhler <tspuhler@mandriva.org> 0.9.6.3-1mdv2011.0
++ Revision: 582451
+- added 0.9.6.3
+- added 0.9.6.3
+
+* Thu Aug 26 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.6.2-9mdv2011.0
++ Revision: 573419
+- fix typo to make sure all fonts are installed
+
+* Wed Aug 25 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.6.2-8mdv2011.0
++ Revision: 573323
++ rebuild (emptylog)
+
+* Wed Aug 25 2010 Olivier Blin <oblin@mandriva.com> 0.9.6.2-7mdv2011.0
++ Revision: 573083
++ rebuild (emptylog)
+
+* Tue Aug 24 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.6.2-6mdv2011.0
++ Revision: 572998
++ rebuild (emptylog)
+
+* Tue Aug 24 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.6.2-5mdv2011.0
++ Revision: 572929
++ rebuild (emptylog)
+
+* Tue Aug 24 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.6.2-4mdv2011.0
++ Revision: 572920
+- drop useless requires (slipped by when syncing the spec with Fedora's)
+
+* Wed Aug 18 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.6.2-3mdv2011.0
++ Revision: 571245
++ rebuild (emptylog)
+
+* Wed Aug 18 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.6.2-2mdv2011.0
++ Revision: 571125
++ rebuild (emptylog)
+
+* Tue Aug 17 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.6.2-1mdv2011.0
++ Revision: 571071
+- update to 0.9.6.2
+
+* Mon Aug 09 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.6.1-3mdv2011.0
++ Revision: 567805
++ rebuild (emptylog)
+
+* Sun Aug 08 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.6.1-2mdv2011.0
++ Revision: 567790
++ rebuild (emptylog)
+
+* Sun Aug 08 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.6.1-1mdv2011.0
++ Revision: 567693
+- update to 0.9.6.1
+- update url
+- fix license
+- add requires on soundfont2-default
+- rediff patch0 (only the awl part is needed, scriptgen build is disabled)
+- add various patches and extra sources from Fedora
+- split the manual pdf's in a separate package
+- split the fonts in a separate package
+
+  + Frank Kober <emuse@mandriva.org>
+    - add musescore to Provides for user convenience
+
+* Sun Apr 11 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.5-2mdv2010.1
++ Revision: 533571
+- clean spec
+- drop patch2, and use a perl command instead
+
+* Fri Dec 25 2009 Ahmad Samir <ahmadsamir@mandriva.org> 0.9.5-1mdv2010.1
++ Revision: 482211
+- new version 0.9.5
+- rediff patches 0,1,2
+
+* Tue Oct 06 2009 Funda Wang <fwang@mandriva.org> 0.9.3-3mdv2010.0
++ Revision: 454472
+- requires qtscriptbinding
+- do not build script interface due to conflicts with main package
+
+* Mon Sep 14 2009 Thierry Vignaud <tv@mandriva.org> 0.9.3-2mdv2010.0
++ Revision: 440161
+- rebuild
+
+* Sat Oct 11 2008 Funda Wang <fwang@mandriva.org> 0.9.3-1mdv2009.1
++ Revision: 292266
+- new version 0.9.3
+
+* Wed Aug 13 2008 Funda Wang <fwang@mandriva.org> 0.9.2-2mdv2009.0
++ Revision: 271321
+- add patch fixing underlink
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild early 2009.0 package (before pixel changes)
+
+  + Pixel <pixel@mandriva.com>
+    - rpm filetriggers deprecates update_menus/update_scrollkeeper/update_mime_database/update_icon_cache/update_desktop_database/post_install_gconf_schemas
+
+* Sat May 10 2008 Funda Wang <fwang@mandriva.org> 0.9.2-1mdv2009.0
++ Revision: 205385
+- fix building
+- BR qt4-linguist
+- New version 0.9.2
+
+* Sat Jan 26 2008 Funda Wang <fwang@mandriva.org> 0.9.1d-1mdv2008.1
++ Revision: 158191
+- fix desktop file install
+- br portaudio
+- 0.9.1d
+- New version 0.9.1
+- New version 0.9.0
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Fri Dec 21 2007 Funda Wang <fwang@mandriva.org> 0.8.0-1mdv2008.1
++ Revision: 136363
+- New version 0.8.0
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Sun Nov 25 2007 Funda Wang <fwang@mandriva.org> 0.7.0.1-2mdv2008.1
++ Revision: 111852
+- BR context
+- BR texlive
+- import mscore
+
+
