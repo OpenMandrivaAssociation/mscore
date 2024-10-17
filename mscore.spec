@@ -9,7 +9,7 @@ Release:    %mkrel 1
 # paper4.png paper5.png are LGPLv3
 # the rest is GPLv2
 License:    GPLv2 and LGPLv2+ and LGPLv3
-Url:        http://musescore.org
+Url:        https://musescore.org
 Group:      Publishing
 Source0:    http://downloads.sourceforge.net/project/mscore/mscore/%{srcname}-%{version}/%{srcname}-%{version}.tar.bz2
 # (Fedora) For building the jazz font
